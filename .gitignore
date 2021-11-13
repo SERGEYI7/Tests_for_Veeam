@@ -1,3 +1,4 @@
 probe*
 tests*
 threading*
+.idea
