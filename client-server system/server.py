@@ -1,6 +1,8 @@
+import logging
 import socket
 import json
 import uuid
+import time
 
 
 def socket_server():
@@ -9,6 +11,14 @@ def socket_server():
     port2 = 8001
     unique_code_server = uuid.uuid4()
     exp = {}
+    logger = logging.getLogger('server_client')
+    logger.setLevel(logging.INFO)
+    dates = time.gmtime(time.time())
+    fh = logging.FileHandler(filename=fr'{dates.tm_year}_{dates.tm_mon}_{dates.tm_mday}.log', encoding='utf8')
+    fh.setLevel(logging.INFO)
+    formatter = logging.Formatter('%(asctime)s - %(name)s - %(message)s')
+    fh.setFormatter(formatter)
+    logger.addHandler(fh)
 
     while True:
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s, \
@@ -20,7 +30,6 @@ def socket_server():
             s2.listen(100)
             conn, addr = s.accept()
             with conn:
-                print("Connected by ", addr)
                 while True:
                     id = conn.recv(1024)
                     if not id:
@@ -30,18 +39,17 @@ def socket_server():
 
             conn2, addr2 = s2.accept()
             with conn2:
-                print("Connected by", addr2)
                 while True:
                     data2 = conn2.recv(1024)
                     if not data2:
                         break
-                    print(data2)
                     message = json.loads(data2)['message']
                     unique_code_client = json.loads(data2)['unique_code']
                     # unique_code_client = 'aergewr' #TODO for tests
                     if str(unique_code_server) == unique_code_client:
                         conn2.sendall(b'1')
-                        print('запись в лог')
+                        print(message)
+                        logger.info(message)
                     else:
                         conn2.sendall('неверный уникальный код'.encode())
 

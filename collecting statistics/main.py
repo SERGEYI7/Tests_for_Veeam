@@ -44,11 +44,4 @@ if __name__ == '__main__':
     parser.add_argument('-fp')
     parser.add_argument('-interval', type=int)
     args = parser.parse_args()
-    # r'C:\Users\Zaika\Pictures\icons\yagoda-malina-listik-cvet.jpg'
-    # r'C:\Users\Zaika\Pictures\icons\raspberry_pi_icon_130847.ico'
-    # r"C:\Users\Zaika\Desktop\структура тестового задания.psd"
-    # r"C:\Users\Zaika\Desktop\ТУТС удалить!!!!!!!!!!!\Laba__1_TUTS.docx"
-    # get_stats(fp=r'C:\Users\Zaika\Desktop\ТУТС удалить!!!!!!!!!!!\Laba__1_TUTS.docx',
-    #           second=3)
-    # python server.py - fp "C:\Users\Zaika\Desktop\ТУТС удалить!!!!!!!!!!!\Laba__1_TUTS.docx" - interval 8
     get_stats(fp=args.fp, second=args.interval)

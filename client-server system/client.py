@@ -12,8 +12,6 @@ def socket_client(ident, message):
         s.sendall(str(ident).encode('utf8'))
         unique_code = s.recv(1024)
 
-    # print('Received', unique_code)
-
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s2:
         exp = {'id': ident, 'unique_code': unique_code.decode(), 'message': message}
         exp_dumps = json.dumps(exp).encode('utf8')
