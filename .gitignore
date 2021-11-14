@@ -1,5 +1,10 @@
 probe*
 tests*
 threading*
+<<<<<<< HEAD
 .idea
 *.log
+=======
+*.log
+.idea
+>>>>>>> dev
