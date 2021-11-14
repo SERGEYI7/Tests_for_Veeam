@@ -1,9 +1,10 @@
 import socket
 import json
+import time
 
 
 def socket_client(ident, message):
-    host = "127.0.0.1"
+    host = "192.168.0.5"
     port = 8000
     port2 = 8001
 
@@ -18,8 +19,9 @@ def socket_client(ident, message):
         s2.connect((host, port2))
         s2.sendall(exp_dumps)
         data2 = s2.recv(1024)
+        # time.sleep(20)
     if data2.decode() != '1':
         print(data2.decode())
 
 
-socket_client(ident=1, message='теперь проверка!!!')
+socket_client(ident=1, message='Персональный компьютер')
