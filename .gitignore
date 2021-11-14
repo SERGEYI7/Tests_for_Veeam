@@ -2,3 +2,4 @@ probe*
 tests*
 threading*
 .idea
+*.log
